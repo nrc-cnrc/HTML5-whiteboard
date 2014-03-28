@@ -1,0 +1,68 @@
+NRC HTML5 Whiteboard
+===============================================================================
+
+This is an experimental collaborative whiteboard written in HTML and Javascript
+
+===============================================================================
+Example Apache configuration (.htaccess)
+===============================================================================
+RewriteEngine on
+
+RewriteCond %{REQUEST_URI} !^(/htmlwhiteboard)
+RewriteCond %{REQUEST_URI} !^(/index\.php|/static|/robots\.txt)
+RewriteRule ^(.*)$ index.php/$1
+
+RewriteCond %{HTTP_HOST} 127.0.0.1
+RewriteCond %{REQUEST_URI} !^/htmlwhiteboard
+RewriteRule ^(.*)$ htmlwhiteboard/$1 [L]
+
+
+===============================================================================
+Libraries
+===============================================================================
+
+Client:
+http://www.digitalmagicpro.com/jPicker/ (http://code.google.com/p/jpicker/)
+http://jquery.com/
+
+Server:
+http://nodejs.org
+http://socket.io
+http://sequelizejs.com/
+
+
+===============================================================================
+Supported/tested Browsers
+===============================================================================
+
+Chrome (latest)
+
+Firefox (latest)
+
+Safari (latest)
+
+Opera (11.5)
+	-- partially working, outstanding bug in socket.io. waiting for fix.
+
+IE (9)
+
+===============================================================================
+Outstanding Issues / Questions
+===============================================================================
+
+ * Do we need rotations (if so, this will require significant code changes)
+
+ * Should undo/redo consider only your actions, or all actions?
+
+ * What about undo/redo with an item that is currently in use by another person?
+
+ * Currently, the image db doesn't detect duplicates.
+
+ * Large image support is missing
+
+ * Add server "locking" support at the whiteboard level
+
+ * Alpha fill for free-form polygon will overlap stroke
+
+ * Some events still binded within the NRCWhiteboard "class". API should
+   allow user to set them.
